@@ -21,14 +21,18 @@ const CommonSidebar: React.FC<SidebarProps> = ({
 
       <div className="flex flex-col items-center space-y-4">
         <button
-          className={`px-4 py-2 rounded ${
+          className={`px-7 py-2 rounded ${
             showManageATS
               ? "bg-[#05C168] text-white"
               : "bg-[#E3FFF2] text-[#05C168]"
           } hover:bg-[#05C168] hover:text-white font-semibold transition-all duration-300 flex items-center space-x-2`}
           onClick={() => setShowManageATS(true)}
         >
-          <img src={aeroDown} alt="Show less" className="icon-size rotate1-90" />
+          <img
+            src={aeroDown}
+            alt="Show less"
+            className="icon-size rotate1-90"
+          />
           <span>Manage Jobs</span>
         </button>
       </div>

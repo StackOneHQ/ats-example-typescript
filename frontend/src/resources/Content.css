@@ -116,4 +116,10 @@
   transform: rotate(90deg);
 }
 
+.px-7 {
+  padding-left: 0.75rem;
+  padding-right: 2.75rem;
+}
+
+
 

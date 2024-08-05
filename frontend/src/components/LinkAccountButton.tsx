@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect } from 'react';
-import { useStackOneHub } from '@stackone/react-hub';
-import { retrieveConnectSessionToken } from '../http/SessionToken';
+import React, { useCallback, useEffect } from "react";
+import { useStackOneHub } from "@stackone/react-hub";
+import { retrieveConnectSessionToken } from "../http/SessionToken";
 
-const LinkAccountButton: React.FC = () => {  
+const LinkAccountButton: React.FC = () => {
   const { startConnect } = useStackOneHub();
 
-  const startFlow = useCallback(async () => {  
+  const startFlow = useCallback(async () => {
     try {
-      const sessionToken = await retrieveConnectSessionToken({ username: 'jane@example.com' });
+      const sessionToken = await retrieveConnectSessionToken({
+        username: "jane@example.com",
+      });
       startConnect({ sessionToken: sessionToken.token });
     } catch (error) {
-      console.error('Error starting connect flow:', error);
+      console.error("Error starting connect flow:", error);
     }
   }, [startConnect]);
 

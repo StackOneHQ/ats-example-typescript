@@ -48,7 +48,13 @@ Follow these steps to set up and run the application locally:
 ```
 git clone https://github.com/StackOneHQ/<repo-name>.git
 ```
-2.  **Backend Setup**:
+2. **Global Dependencies Setup**:
+
+Navigate to the root directory of the project and install global dependencies:
+```
+npm install
+```
+3.  **Backend Setup**:
 
 *  Navigate to the `backend` directory and create a `.env` file, and add the following variables:
 ```
@@ -59,7 +65,7 @@ STACKONE_API_KEY="<your-stackone-api-key>"
 ```
 npm install
 ```
-3.  **Frontend Setup**:
+4.  **Frontend Setup**:
 
 *   Navigate to the `frontend` directory and create a `.env` file, and add the following variable:
 
@@ -70,7 +76,7 @@ REACT_APP_API_BASE_URL="http://localhost:3001"
 ```
 npm install
 ```
-4.  **Run the Application**:
+5.  **Run the Application**:
 *   Navigate to the root directory of the application:
 ```
 npm start

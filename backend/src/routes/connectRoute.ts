@@ -14,11 +14,9 @@ const isKnownError = (error: unknown): error is InvalidRequestError | ForbiddenR
 };
 
 router.post('/connect-session', async (req: Request, res: Response) => {
-    
-    const { origin_owner_id, origin_owner_name } = req.body;
 
     try {
-        const sessionToken = await connectStackOneSession(origin_owner_id, origin_owner_name);
+        const sessionToken = await connectStackOneSession();
         res.status(200).send(sessionToken);
     } catch (error: unknown) {
         if (isKnownError(error)) {

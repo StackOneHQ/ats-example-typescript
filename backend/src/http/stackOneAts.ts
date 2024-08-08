@@ -21,21 +21,22 @@ export const getJobs = async (accountId: string, next: string) => {
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
+            const errorMessage = error.response?.data?.message || 'An error occurred';
             switch (error.response?.status) {
                 case 400:
-                    throw new InvalidRequestError('Invalid request.');
+                    throw new InvalidRequestError(errorMessage);
                 case 403:
-                    throw new ForbiddenRequestError('Forbidden request.');
+                    throw new ForbiddenRequestError(errorMessage);
                 case 412:
-                    throw new PreconditionFailedError('Precondition failed: linked account belongs to a disabled integration.');
+                    throw new PreconditionFailedError(errorMessage);
                 case 429:
-                    throw new TooManyRequestsError('Too many requests.');
+                    throw new TooManyRequestsError(errorMessage);
                 case 500:
-                    throw new ServerError('Server error while executing the request.');
+                    throw new ServerError(errorMessage);
                 case 501:
-                    throw new NotImplementedError('This functionality is not implemented.');
+                    throw new NotImplementedError(errorMessage);
                 default:
-                    throw new UnhandledError(`Unexpected error: ${error.response?.status}`);
+                    throw new UnhandledError(`Unexpected error: ${error.response?.status} - ${errorMessage}`);
             }
         } else {
             throw new UnhandledError(`Unexpected error: ${error}`);
@@ -61,21 +62,22 @@ export const getApplications = async (accountId: string, next: string) => {
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
+            const errorMessage = error.response?.data?.message || 'An error occurred';
             switch (error.response?.status) {
                 case 400:
-                    throw new InvalidRequestError('Invalid request.');
+                    throw new InvalidRequestError(errorMessage);
                 case 403:
-                    throw new ForbiddenRequestError('Forbidden request.');
+                    throw new ForbiddenRequestError(errorMessage);
                 case 412:
-                    throw new PreconditionFailedError('Precondition failed: linked account belongs to a disabled integration.');
+                    throw new PreconditionFailedError(errorMessage);
                 case 429:
-                    throw new TooManyRequestsError('Too many requests.');
+                    throw new TooManyRequestsError(errorMessage);
                 case 500:
-                    throw new ServerError('Server error while executing the request.');
+                    throw new ServerError(errorMessage);
                 case 501:
-                    throw new NotImplementedError('This functionality is not implemented.');
+                    throw new NotImplementedError(errorMessage);
                 default:
-                    throw new UnhandledError(`Unexpected error: ${error.response?.status}`);
+                    throw new UnhandledError(`Unexpected error: ${error.response?.status} - ${errorMessage}`);
             }
         } else {
             throw new UnhandledError(`Unexpected error: ${error}`);

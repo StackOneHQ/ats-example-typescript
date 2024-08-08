@@ -2,10 +2,12 @@ import axios from "axios";
 import config from "../config";
 import { InvalidRequestError, ForbiddenRequestError, TooManyRequestsError, ServerError, NotImplementedError, UnhandledError } from '../errors/stackoneErrors';
 
-export const getSessionToken = async (origin_owner_id: string, origin_owner_name: string) => {
+export const getSessionToken = async () => {
 
     const url: string = config.STACKONE_BASE_URL + "/connect_sessions";
     try {
+        const origin_owner_id = config.ORIGIN_OWNER_ID;
+        const origin_owner_name = config.ORIGIN_OWNER_NAME;
         const response = await axios.post(url, {
             expires_in: 1800,
             multiple: false,
@@ -22,19 +24,20 @@ export const getSessionToken = async (origin_owner_id: string, origin_owner_name
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
+            const errorMessage = error.response?.data?.message || 'An error occurred';
             switch (error.response?.status) {
                 case 400:
-                    throw new InvalidRequestError('Invalid request.');
+                    throw new InvalidRequestError(errorMessage);
                 case 403:
-                    throw new ForbiddenRequestError('Forbidden request.');
+                    throw new ForbiddenRequestError(errorMessage);
                 case 429:
-                    throw new TooManyRequestsError('Too many requests.');
+                    throw new TooManyRequestsError(errorMessage);
                 case 500:
-                    throw new ServerError('Server error while executing the request.');
+                    throw new ServerError(errorMessage);
                 case 501:
-                    throw new NotImplementedError('This functionality is not implemented.');
+                    throw new NotImplementedError(errorMessage);
                 default:
-                    throw new UnhandledError(`Unexpected error: ${error.response?.status}`);
+                    throw new UnhandledError(`Unexpected error: ${error.response?.status} - ${errorMessage}`);
             }
         } else {
             throw new UnhandledError(`Unexpected error: ${error}`);

@@ -70,13 +70,6 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
     handleFetchApplications();
   }, [accountId]);
 
-  const truncateId = (id: string) => {
-    if (id.length > 50) {
-      return `${id.slice(0, 40)}...`;
-    }
-    return id;
-  };
-
   const getCandidateName = (candidate?: Candidate) => {
     if (candidate) {
       return `${candidate.first_name} ${candidate.last_name}`;
@@ -111,14 +104,14 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
               <div className="text-[#05C168] text-sm font-medium space-y-1">
                 <div className="flex flex-col">
                   <strong>Job ID:</strong>
-                  <span className="font-normal truncated-text">
-                    {truncateId(application.job_id)}
+                  <span className="font-normal">
+                    {application.remote_job_id}
                   </span>
                 </div>
                 <div className="flex flex-col">
                   <strong>Candidate ID:</strong>
-                  <span className="font-normal truncated-text">
-                    {truncateId(application.candidate_id)}
+                  <span className="font-normal">
+                    {application.remote_candidate_id}
                   </span>
                 </div>
                 <div className="flex flex-col">

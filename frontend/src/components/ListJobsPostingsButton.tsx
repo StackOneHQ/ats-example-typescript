@@ -78,7 +78,7 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
                     id={`truncated-text-${index}`}
                     className="truncated-text"
                   >
-                    {job.id}
+                    {job.remote_id}
                   </span>
                 </p>
                 <p>

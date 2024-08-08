@@ -13,7 +13,7 @@ const CommonSidebar: React.FC<SidebarProps> = ({
   return (
     <div className="rounded-sm text-gray-900 w-1/7 p-4 flex flex-col items-center mr-20px">
       <img
-        src="logo.svg"
+        src="stackOne-logo.svg"
         alt="Logo"
         className="mb-4 h-16 "
         style={{ width: "9rem" }}

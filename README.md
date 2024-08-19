@@ -46,11 +46,11 @@ Follow these steps to set up and run the application locally:
 
 1.  **Clone the Repository**:
 ```
-git clone https://github.com/StackOneHQ/<repo-name>.git
+git clone https://github.com/StackOneHQ/ats-example-typescript.git
 ```
 2. **Global Dependencies Setup**:
 
-Navigate to the root directory of the project and install global dependencies:
+* Navigate to the root directory of the project and install global dependencies:
 ```
 npm install
 ```
@@ -60,6 +60,8 @@ npm install
 ```
 PORT=3001
 STACKONE_API_KEY="<your-stackone-api-key>"
+ORIGIN_OWNER_ID="<ORIGIN_OWNER_ID>"
+ORIGIN_OWNER_NAME="<ORIGIN_OWNER_NAME>"
 ```
 *   Install dependencies for the backend:
 ```
@@ -67,10 +69,11 @@ npm install
 ```
 4.  **Frontend Setup**:
 
-*   Navigate to the `frontend` directory and create a `.env` file, and add the following variable:
+*   Navigate to the `frontend` directory and create a `.env` file, and add the following variables:
 
 ```
-REACT_APP_API_BASE_URL="http://localhost:3001"
+REACT_APP_API_SESSION_URL="http://localhost:3001/session-token"
+REACT_APP_API_ATS_URL="http://localhost:3001/ats"
 ```
 *   Install dependencies:
 ```
@@ -202,6 +205,3 @@ const getApplications = async (accountId: string, next: string) => {
     }
 }
 ```
-
-
-

@@ -11,9 +11,9 @@ const port = config.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/stackone', stackoneAtsRoutes);
-app.use('/stackone', stackoneSessionRoute);
-app.use('/stackone', stackoneAccountRoute);
+app.use('/ats', stackoneAtsRoutes);
+app.use('/session-token', stackoneSessionRoute);
+app.use('/ats', stackoneAccountRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

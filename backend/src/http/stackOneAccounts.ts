@@ -1,6 +1,6 @@
 import axios from "axios";
 import config from "../config";
-import { InvalidRequestError, ForbiddenRequestError, TooManyRequestsError, ServerError, NotImplementedError, UnhandledError } from '../errors/stackoneErrors';
+import { AxiosError } from "./errorHandler";
 
 export const getAllAccounts = async () => {
 
@@ -12,27 +12,8 @@ export const getAllAccounts = async () => {
                 'authorization': `Basic ${config.STACKONE_API_KEY}`,
             },
         });
-
         return response.data;
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            const errorMessage = error.response?.data?.message || 'An error occurred';
-            switch (error.response?.status) {
-                case 400:
-                    throw new InvalidRequestError(errorMessage);
-                case 403:
-                    throw new ForbiddenRequestError(errorMessage);
-                case 429:
-                    throw new TooManyRequestsError(errorMessage);
-                case 500:
-                    throw new ServerError(errorMessage);
-                case 501:
-                    throw new NotImplementedError(errorMessage);
-                default:
-                    throw new UnhandledError(`Unexpected error: ${error.response?.status} - ${errorMessage}`);
-            }
-        } else {
-            throw new UnhandledError(`Unexpected error: ${error}`);
-        }
+        AxiosError(error)
     }
 }

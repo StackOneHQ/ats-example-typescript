@@ -6,7 +6,8 @@ export const listJobsPostings = async (accountId: string) => {
     const response = await fetch(`${apiUrl}/jobs`, {
       method: 'GET',
       headers: {
-        'x-account-id': accountId
+        'x-account-id': accountId,
+        'accept': 'application/json',
       }
     });
 

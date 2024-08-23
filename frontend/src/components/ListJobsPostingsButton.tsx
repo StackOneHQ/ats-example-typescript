@@ -4,7 +4,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../resources/Content.css";
 import aeroDown from "../resources/Icons/arrowdown.svg";
 
-
 interface JobStatus {
   value: string;
   source_value: string;
@@ -37,7 +36,7 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
   const [jobs, setJobs] = useState<Job[]>([]);
   const [visibleJobs, setVisibleJobs] = useState<number>(2);
 
-  const handleFetchJobs = async () => {
+  const fetchJobs = async () => {
     try {
       const jobsData = await listJobsPostings(accountId);
       if (Array.isArray(jobsData.data)) {
@@ -48,16 +47,16 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
     }
   };
 
-  const handleShowMore = () => {
+  const showMore = () => {
     setVisibleJobs((prev) => Math.min(prev + 2, jobs.length));
   };
 
-  const handleShowLess = () => {
+  const showLess = () => {
     setVisibleJobs((prev) => Math.max(prev - 2, 2));
   };
 
   useEffect(() => {
-    handleFetchJobs();
+    fetchJobs();
   }, [accountId]);
 
   return (
@@ -104,13 +103,17 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
       )}
       <div className="flex justify-between mt-4">
         {jobs.length > 0 && visibleJobs < jobs.length && (
-          <button className="show-more-button" onClick={handleShowMore}>
+          <button className="show-more-button" onClick={showMore}>
             <img src={aeroDown} alt="Show more" className="icon-size" />
           </button>
         )}
         {jobs.length > 0 && visibleJobs > 2 && (
-          <button className="show-more-button" onClick={handleShowLess}>
-            <img src={aeroDown} alt="Show less" className="icon-size rotate-180" />
+          <button className="show-more-button" onClick={showLess}>
+            <img
+              src={aeroDown}
+              alt="Show less"
+              className="icon-size rotate-180"
+            />
           </button>
         )}
       </div>

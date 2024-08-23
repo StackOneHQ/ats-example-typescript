@@ -57,7 +57,7 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
 }) => {
   const [applications, setApplications] = useState<Application[]>([]);
 
-  const handleFetchApplications = async () => {
+  const fetchApplications = async () => {
     try {
       const applicationsData = await listApplications(accountId);
       setApplications(applicationsData.data);
@@ -67,7 +67,7 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
   };
 
   useEffect(() => {
-    handleFetchApplications();
+    fetchApplications();
   }, [accountId]);
 
   const getCandidateName = (candidate?: Candidate) => {
@@ -99,14 +99,16 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
               className="flex flex-col items-start bg-[#E3FFF2] border border-[#05C168] shadow-xl p-4 rounded-lg w-full sm:w-72 sm:mx-2 mb-4"
             >
               <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mb-4">
-                <img src={userIcon} alt="User Icon" className="text-[#05C168] text-4xl" />
+                <img
+                  src={userIcon}
+                  alt="User Icon"
+                  className="text-[#05C168] text-4xl"
+                />
               </div>
               <div className="text-[#05C168] text-sm font-medium space-y-1">
                 <div className="flex flex-col">
                   <strong>Job ID:</strong>
-                  <span className="font-normal">
-                    {application.remote_job_id}
-                  </span>
+                  <span className="font-normal">{application.remote_id}</span>
                 </div>
                 <div className="flex flex-col">
                   <strong>Candidate ID:</strong>
@@ -140,7 +142,7 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
       {applications.length > 0 && (
         <button
           className="bg-[#E3FFF2] text-[#05C168] px-4 py-2 rounded border border-[#05C168] flex items-center space-x-2 hover:bg-[#05C168] hover:text-[#FFFFFF] transition-all duration-300 ml-4 mt-2"
-          onClick={handleFetchApplications}
+          onClick={fetchApplications}
         >
           <span>View All</span>
           <img src={arrowUpIcon} alt="Arrow Up Icon" className="rotate" />

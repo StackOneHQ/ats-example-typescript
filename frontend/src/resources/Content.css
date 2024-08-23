@@ -16,7 +16,6 @@
   border: 2px solid #05C168;
   border-radius: 0.5rem;
   padding: 1rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   width: calc(50% - 0.5rem);
   flex-shrink: 0;
   position: relative;
@@ -58,7 +57,6 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  margin-right: 6rem;
   word-wrap: break-word;
 }
 
@@ -78,17 +76,41 @@
 }
 
 .show-more-button {
-  background-color: #2ecc71;
-  color: white;
+  background-color: #E3FFF2;
+  color: #05C168;
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 1rem auto;
+  z-index: 1;
+}
+.show-more-button:hover {
+  background-color: #05C168; 
+  color: white; 
+}
+
+.see-more-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  width: 100%;
+  position: relative;
+}
+
+.see-more-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #E3FFF2;
+  z-index: 0;
 }
 
 .truncated-text {
@@ -99,11 +121,9 @@
   max-width: calc(100% - 6rem);
 }
 
-
-/* resources/Content.css */
 .icon-size {
-  width: 24px; /* Adjust as needed */
-  height: 24px; /* Adjust as needed */
+  width: 24px; 
+  height: 24px; 
 }
 
 .rotate-180 {
@@ -116,4 +136,275 @@
   transform: rotate(90deg);
 }
 
+.px-7 {
+  padding-left: 0.75rem;
+  padding-right: 2.75rem;
+}
 
+@media (max-width:  320px) {
+  .job-title {
+    font-size: 1.25rem;
+    margin-right: 3rem;
+  }
+
+  .job-badge {
+    font-size: 0.625rem; 
+    padding: 0.25rem 0.5rem; 
+  }
+  .job-badge-container {
+    position: static; 
+    margin-top: 1rem; 
+  }
+}
+
+@media (max-width: 622px) {
+  .job-badge-container {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
+.job-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.job-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+
+.job-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #05C168;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.clickable-job-card {
+  cursor: pointer;
+}
+
+.clickable-job-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.job-view-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-back {
+  background-color: #E3FFF2;
+  color: #05C168;
+  border: 2px solid #05C168;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.job-title2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color:#05C168;
+}
+
+.job-info {
+  font-size: 0.5rem;
+  margin: 10px 0;
+  color:#05C168;
+}
+
+.job-description {
+  margin-top: 20px;
+  color:#05C168;
+}
+
+.job-description div {
+  background-color: #ffffff;
+  padding: 2px;
+}
+
+@media (min-width: 550px) {
+  .btn-back {
+    padding: 6px 12px; 
+    font-size: 1.2rem; 
+  }
+
+  .job-title2 {
+    font-size: 2.5rem; 
+  }
+
+  .job-info {
+    font-size: 1.2rem; 
+  }
+
+  .job-description {
+    font-size: 1.1rem; 
+  }
+
+}
+
+@media (min-width: 820px) {
+  .btn-back {
+    padding: 7px 15px; 
+    font-size: 1.4rem; 
+  }
+
+  .job-title2 {
+    font-size: 3rem; 
+  }
+
+  .job-info {
+    font-size: 1.4rem; 
+  }
+
+  .job-description {
+    font-size: 1.3rem; 
+  }
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  height: 80%;
+  overflow-y: auto; 
+  position: relative;
+  color:#05C168;
+}
+
+.form-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-title {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color:#05C168;
+}
+
+.form-group {
+  margin-bottom: 12px;
+  color:#05C168;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-submit-button {
+  background-color: #05C168;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .form-card {
+    width: 90%;
+    height: 80%;
+    padding: 15px;
+  }
+
+  .form-title {
+    font-size: 16px;
+  }
+
+  .form-input {
+    padding: 6px;
+  }
+
+  .form-submit-button {
+    padding: 8px;
+  }
+}
+
+.error-card, .success-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 20px;
+  border-radius: 8px;
+  height: 300px;
+  z-index: 1000;
+  width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.error-card {
+  background-color: #f8d7da;
+  color: #721c24;
+  font:bold;
+}
+
+.success-card {
+  background-color: #E3FFF2;
+  color: #05C168;
+  font:bold;
+}
+
+.card-close-button2 {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.success-icon {
+  height: 70px;
+  vertical-align: middle;
+}

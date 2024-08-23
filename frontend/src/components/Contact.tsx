@@ -14,7 +14,11 @@ const Contact: React.FC = () => {
       </h2>
       <div className="flex flex-col md:flex-row justify-around items-center md:items-start space-y-6 md:space-y-0 md:space-x-10">
         <div className="flex flex-col items-center space-y-2 text-center">
-          <img src={phone} alt="Phone Icon" className="text-[#05C168] text-4xl mb-2" />
+          <img
+            src={phone}
+            alt="Phone Icon"
+            className="text-[#05C168] text-4xl mb-2"
+          />
           <span
             className="text-[#05C168]"
             style={{ fontFamily: "Inter, sans-serif" }}
@@ -25,7 +29,11 @@ const Contact: React.FC = () => {
           </span>
         </div>
         <div className="flex flex-col items-center space-y-2 text-center">
-          <img src={mail} alt="Mail Icon" className="text-[#05C168] text-4xl mb-2" />
+          <img
+            src={mail}
+            alt="Mail Icon"
+            className="text-[#05C168] text-4xl mb-2"
+          />
           <span
             className="text-[#05C168]"
             style={{ fontFamily: "Inter, sans-serif" }}
@@ -34,7 +42,11 @@ const Contact: React.FC = () => {
           </span>
         </div>
         <div className="flex flex-col items-center space-y-2 text-center">
-          <img src={location} alt="Location Icon" className="text-[#05C168] text-4xl mb-2" />
+          <img
+            src={location}
+            alt="Location Icon"
+            className="text-[#05C168] text-4xl mb-2"
+          />
           <span
             className="text-[#05C168]"
             style={{ fontFamily: "Inter, sans-serif" }}

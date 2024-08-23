@@ -22,13 +22,13 @@ const ManageATSContent: React.FC = () => {
   );
   const [selectedAccountName, setSelectedAccountName] = useState<string>(
     "No account available"
-  ); 
+  );
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
-  const handleManageATSClick = () => {
+  const manageATSClick = () => {
     setShowLinkAccount(!showLinkAccount);
   };
 
@@ -51,7 +51,7 @@ const ManageATSContent: React.FC = () => {
     }
   };
 
-  const handleAccountClick = (id: string, name: string) => {
+  const accountClick = (id: string, name: string) => {
     setSelectedAccountId(id);
     setSelectedAccountName(name);
     setShowDropdown(false);
@@ -83,7 +83,11 @@ const ManageATSContent: React.FC = () => {
           </h1>
         </div>
         <div className="flex space-x-4">
-          <img src={notification} alt="Notification Icon" className="icon-size" />
+          <img
+            src={notification}
+            alt="Notification Icon"
+            className="icon-size"
+          />
           <img src={mail} alt="Mail Icon" className="icon-size" />
         </div>
       </div>
@@ -91,7 +95,7 @@ const ManageATSContent: React.FC = () => {
       <div className="flex justify-between mb-6 mt-5">
         <button
           className="bg-[#FFFFFF] text-[#05C168] border border-[#05C168] px-4 py-2 rounded shadow hover:bg-[#05C168] hover:text-[#FFFFFF] transition-all duration-300"
-          onClick={handleManageATSClick}
+          onClick={manageATSClick}
         >
           Manage Jobs Portal
         </button>
@@ -109,9 +113,7 @@ const ManageATSContent: React.FC = () => {
                   <li
                     key={account.id}
                     className="px-4 py-2 hover:bg-[#E3FFF2] cursor-pointer text-[#05C168]"
-                    onClick={() =>
-                      handleAccountClick(account.id, account.provider)
-                    }
+                    onClick={() => accountClick(account.id, account.provider)}
                   >
                     {account.provider}
                   </li>
@@ -126,7 +128,11 @@ const ManageATSContent: React.FC = () => {
         )}
       </div>
 
-      {showLinkAccount && <LinkAccountButton />}
+      {showLinkAccount && (
+        <LinkAccountButton
+        setShowLinkAccount={setShowLinkAccount} 
+      />
+      )}
       {selectedAccountId && (
         <ListJobsPostingsButton accountId={selectedAccountId} />
       )}

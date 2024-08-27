@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { 
-    InvalidRequestError, 
-    ForbiddenRequestError, 
-    PreconditionFailedError, 
-    TooManyRequestsError, 
-    ServerError, 
-    NotImplementedError, 
-    UnhandledError 
+import {
+    InvalidRequestError,
+    ForbiddenRequestError,
+    PreconditionFailedError,
+    TooManyRequestsError,
+    ServerError,
+    NotImplementedError,
+    UnhandledError
 } from '../errors/stackoneErrors';
 
 export const AxiosError = (error: unknown) => {

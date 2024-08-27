@@ -33,7 +33,8 @@ export interface JobPosting {
   created_at: string;
   remote_id: string;
   remote_job_id: string;
-  accountId: string;
+  provider: string;
+  origin_owner_id: string;
 }
 
 const ListJobsPostingsButton: React.FC = () => {
@@ -73,7 +74,8 @@ const ListJobsPostingsButton: React.FC = () => {
     navigate(`/view-job/${job.job_id}`, {
       state: {
         jobDetails: job,
-        accountId: job.accountId,
+        provider: job.provider,
+        originOwnerId: job.origin_owner_id,
       },
     });
   };

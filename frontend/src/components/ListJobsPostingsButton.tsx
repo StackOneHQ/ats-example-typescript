@@ -28,24 +28,34 @@ interface Job {
   created_at: string;
   updated_at: string;
   remote_id: string;
+  code: string;  
+  status: string;  
+  remote_department_ids: string[]; 
+  remote_location_ids: string[]; 
 }
 
-const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
-  accountId,
+const ListJobsPostingsButton: React.FC<{ provider: string; originOwnerId: string }> = ({
+  
+  provider,
+  originOwnerId,
 }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [visibleJobs, setVisibleJobs] = useState<number>(2);
 
   const fetchJobs = async () => {
     try {
-      const jobsData = await listJobsPostings(accountId);
-      if (Array.isArray(jobsData.data)) {
+      const jobsData = await listJobsPostings(provider, originOwnerId); 
+      if (Array.isArray(jobsData)) {
+        setJobs(jobsData);
+      } else if (jobsData && typeof jobsData === 'object' && Array.isArray(jobsData.data)) {
         setJobs(jobsData.data);
+      } else {
+        console.error("Jobs data is not in the expected array format");
       }
     } catch (error) {
       console.error("Error fetching jobs:", error);
     }
-  };
+};
 
   const showMore = () => {
     setVisibleJobs((prev) => Math.min(prev + 2, jobs.length));
@@ -57,7 +67,7 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
 
   useEffect(() => {
     fetchJobs();
-  }, [accountId]);
+  }, [provider, originOwnerId]);
 
   return (
     <div className="relative z-1">
@@ -73,20 +83,14 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
                 <h2 className="job-title">{job.title}</h2>
                 <p>
                   <strong>Job ID:</strong>{" "}
-                  <span
-                    id={`truncated-text-${index}`}
-                    className="truncated-text"
-                  >
+                  <span id={`truncated-text-${index}`} className="truncated-text">
                     {job.remote_id}
                   </span>
                 </p>
                 <p>
                   <strong>Status:</strong> {job.job_status.value}
                 </p>
-                <div
-                  id={`job-badge-container-${index}`}
-                  className="job-badge-container"
-                >
+                <div id={`job-badge-container-${index}`} className="job-badge-container">
                   <p>Created at</p>
                   <span className="job-badge">
                     {new Date(job.created_at).toLocaleString()}
@@ -109,11 +113,7 @@ const ListJobsPostingsButton: React.FC<{ accountId: string }> = ({
         )}
         {jobs.length > 0 && visibleJobs > 2 && (
           <button className="show-more-button" onClick={showLess}>
-            <img
-              src={aeroDown}
-              alt="Show less"
-              className="icon-size rotate-180"
-            />
+            <img src={aeroDown} alt="Show less" className="icon-size rotate-180" />
           </button>
         )}
       </div>

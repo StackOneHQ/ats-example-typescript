@@ -49,17 +49,19 @@ interface Application {
 }
 
 interface ListApplicationsButtonProps {
-  accountId: string;
+  provider: string;
+  originOwnerId: string;
 }
 
 const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
-  accountId,
+  provider,
+  originOwnerId,
 }) => {
   const [applications, setApplications] = useState<Application[]>([]);
 
   const fetchApplications = async () => {
     try {
-      const applicationsData = await listApplications(accountId);
+      const applicationsData = await listApplications(provider, originOwnerId);
       setApplications(applicationsData.data);
     } catch (err) {
       console.error("Error fetching applications:", err);
@@ -68,7 +70,7 @@ const ListApplicationsButton: React.FC<ListApplicationsButtonProps> = ({
 
   useEffect(() => {
     fetchApplications();
-  }, [accountId]);
+  }, [provider, originOwnerId]);
 
   const getCandidateName = (candidate?: Candidate) => {
     if (candidate) {

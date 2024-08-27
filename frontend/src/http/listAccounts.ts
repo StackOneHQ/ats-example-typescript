@@ -1,14 +1,17 @@
 import { getAtsApiUrl, errorHandler, handleResponse } from './apiUtils';
 
 export const listAccounts = async () => {
-  try {
-    const apiUrl = getAtsApiUrl();
-    const response = await fetch(`${apiUrl}/accounts`, {
-      method: 'GET',
-    });
+    try {
+        const apiUrl = getAtsApiUrl();
+        const response = await fetch(`${apiUrl}/accounts`, {
+            method: 'GET',
+        });
 
-    return await handleResponse(response);
-  } catch (error) {
-    errorHandler(error);
-  }
+        const accountsData = await handleResponse(response);
+        return accountsData;
+    } catch (error) {
+
+        errorHandler(error);
+        return [];
+    }
 };

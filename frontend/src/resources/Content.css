@@ -14,12 +14,13 @@
   background-color: #E3FFF2;
   color: #05C168;
   border: 2px solid #05C168;
-  border-radius: 0.5rem;
+  border-radius: 24px;
   padding: 1rem;
   width: calc(50% - 0.5rem);
   flex-shrink: 0;
   position: relative;
   box-sizing: border-box;
+
 }
 
 @media (max-width: 1024px) {
@@ -47,15 +48,15 @@
 }
 
 .job-badge {
-  background-color: rgba(255, 255, 255, 0.7);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .job-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: 600;
   margin-bottom: 1rem;
   word-wrap: break-word;
 }
@@ -88,9 +89,10 @@
   margin: 1rem auto;
   z-index: 1;
 }
+
 .show-more-button:hover {
-  background-color: #05C168; 
-  color: white; 
+  background-color: #05C168;
+  color: white;
 }
 
 .see-more-container {
@@ -122,16 +124,18 @@
 }
 
 .icon-size {
-  width: 24px; 
-  height: 24px; 
+  width: 24px;
+  height: 24px;
 }
 
 .rotate-180 {
   transform: rotate(180deg);
 }
+
 .rotate1-90 {
   transform: rotate(90deg);
 }
+
 .rotate {
   transform: rotate(90deg);
 }
@@ -141,19 +145,20 @@
   padding-right: 2.75rem;
 }
 
-@media (max-width:  320px) {
+@media (max-width: 320px) {
   .job-title {
     font-size: 1.25rem;
     margin-right: 3rem;
   }
 
   .job-badge {
-    font-size: 0.625rem; 
-    padding: 0.25rem 0.5rem; 
+    font-size: 0.625rem;
+    padding: 0.25rem 0.5rem;
   }
+
   .job-badge-container {
-    position: static; 
-    margin-top: 1rem; 
+    position: static;
+    margin-top: 1rem;
   }
 }
 
@@ -224,20 +229,20 @@
 
 .job-title2 {
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: semibold;
   margin-bottom: 20px;
-  color:#05C168;
+  color: #05C168;
 }
 
 .job-info {
   font-size: 0.5rem;
   margin: 10px 0;
-  color:#05C168;
+  color: #05C168;
 }
 
 .job-description {
   margin-top: 20px;
-  color:#05C168;
+  color: #05C168;
 }
 
 .job-description div {
@@ -247,40 +252,40 @@
 
 @media (min-width: 550px) {
   .btn-back {
-    padding: 6px 12px; 
-    font-size: 1.2rem; 
+    padding: 6px 12px;
+    font-size: 1.2rem;
   }
 
   .job-title2 {
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
   }
 
   .job-info {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
   }
 
   .job-description {
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
   }
 
 }
 
 @media (min-width: 820px) {
   .btn-back {
-    padding: 7px 15px; 
-    font-size: 1.4rem; 
+    padding: 7px 15px;
+    font-size: 1.4rem;
   }
 
   .job-title2 {
-    font-size: 3rem; 
+    font-size: 3rem;
   }
 
   .job-info {
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
   }
 
   .job-description {
-    font-size: 1.3rem; 
+    font-size: 1.3rem;
   }
 }
 
@@ -302,9 +307,9 @@
   border-radius: 8px;
   width: 90%;
   height: 80%;
-  overflow-y: auto; 
+  overflow-y: auto;
   position: relative;
-  color:#05C168;
+  color: #05C168;
 }
 
 .form-close-button {
@@ -319,12 +324,12 @@
   margin-bottom: 16px;
   font-size: 18px;
   font-weight: bold;
-  color:#05C168;
+  color: #05C168;
 }
 
 .form-group {
   margin-bottom: 12px;
-  color:#05C168;
+  color: #05C168;
 }
 
 .form-input {
@@ -364,7 +369,8 @@
   }
 }
 
-.error-card, .success-card {
+.error-card,
+.success-card {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -385,13 +391,13 @@
 .error-card {
   background-color: #f8d7da;
   color: #721c24;
-  font:bold;
+  font: bold;
 }
 
 .success-card {
   background-color: #E3FFF2;
   color: #05C168;
-  font:bold;
+  font: bold;
 }
 
 .card-close-button2 {

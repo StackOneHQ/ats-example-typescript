@@ -4,6 +4,7 @@ import ListCandidateJobsButton from "./ListCandidateJobs";
 import mail from "../resources/Icons/mail.svg";
 import notification from "../resources/Icons/notification.svg";
 import user from "../resources/Icons/user.svg";
+import backgroundImage from "../resources/Icons/background.svg";
 
 const CandidateView: React.FC = () => {
   return (
@@ -30,8 +31,16 @@ const CandidateView: React.FC = () => {
         </div>
       </div>
       <hr />
-      <ListCandidateJobsButton />
-
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          padding: "20px",
+        }}
+      >
+        <ListCandidateJobsButton />
+      </div>
       <Contact />
     </div>
   );

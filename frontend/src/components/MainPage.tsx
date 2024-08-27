@@ -15,11 +15,6 @@ const MainPage: React.FC = () => {
             element={
               <div
                 className="p-6 rounded-lg shadow-md"
-                style={{
-                  borderTopLeftRadius: "2.5rem",
-                  boxShadow:
-                    "0 -4px 8px -1px rgba(0, 0, 0, 0.1), 0 -2px 1px -1px rgba(0, 0, 0, 0.06)",
-                }}
               >
                 <CandidateView />
               </div>

@@ -11,17 +11,32 @@ This web application showcases two primary user interfaces:
 
 1.  **Candidate View**:
 
+    ![image](https://github.com/user-attachments/assets/4cebd5dd-1204-444a-be49-b8c0ebe9d582)
+
+    ![image](https://github.com/user-attachments/assets/f8e6de5d-9247-435f-8d3e-90c5911ee6be)
+
+    ![image](https://github.com/user-attachments/assets/3761db49-0252-4aee-9007-eb6141326f2e)
+
 *   Candidates can browse and apply for jobs.
 *   Submitted applications are stored in the selected ATS provider's system, such as Greenhouse.
 
 2.  **HR View**:
+  
+    ![image](https://github.com/user-attachments/assets/acd48c2e-34be-47c3-b238-827f40a13d5e)
 
+    ![image](https://github.com/user-attachments/assets/c9a287c8-405d-42e9-9373-4e44ed4b6646)
+
+    ![image](https://github.com/user-attachments/assets/beeb323c-acae-4455-80d7-7491266a76c0)
+    
 *   HR professionals can view posted jobs and receive applications.
 *   HRs have the flexibility to select any ATS provider to manage job postings and applications.
 *   This interface allows HR to add multiple ATS providers using a unified StackOne API.
   
-![stackone-result-ss-3-v1](https://github.com/user-attachments/assets/385071ea-fe01-4a74-8129-7d199c963c15)
-![stackone-result-ss-2-v1](https://github.com/user-attachments/assets/f29621f5-5364-446c-ad04-b2e0dd9df095)
+
+## Navigation
+
+- The **main route ('/')** will land on the **HR View**.
+- The **'/apply-jobs' route** will take the user to the **Candidate View**.
 
 ## Tech Stack
 
@@ -46,20 +61,14 @@ Follow these steps to set up and run the application locally:
 
 1.  **Clone the Repository**:
 ```
-git clone https://github.com/StackOneHQ/ats-example-typescript.git
+git clone https://github.com/StackOneHQ/<repo-name>.git
 ```
-2. **Global Dependencies Setup**:
-
-* Navigate to the root directory of the project and install global dependencies:
-```
-npm install
-```
-3.  **Backend Setup**:
+2.  **Backend Setup**:
 
 *  Navigate to the `backend` directory and create a `.env` file, and add the following variables:
 ```
 PORT=3001
-STACKONE_API_KEY="<your-stackone-api-key>"
+STACKONE_API_KEY="<YOUR-STACKONE-API-KEY>"
 ORIGIN_OWNER_ID="<ORIGIN_OWNER_ID>"
 ORIGIN_OWNER_NAME="<ORIGIN_OWNER_NAME>"
 ```
@@ -67,11 +76,12 @@ ORIGIN_OWNER_NAME="<ORIGIN_OWNER_NAME>"
 ```
 npm install
 ```
-4.  **Frontend Setup**:
+3.  **Frontend Setup**:
 
-*   Navigate to the `frontend` directory and create a `.env` file, and add the following variables:
+*   Navigate to the `frontend` directory and create a `.env` file, and add the following variable:
 
 ```
+REACT_APP_API_BASE_URL="http://localhost:3001"
 REACT_APP_API_SESSION_URL="http://localhost:3001/session-token"
 REACT_APP_API_ATS_URL="http://localhost:3001/ats"
 ```
@@ -79,7 +89,7 @@ REACT_APP_API_ATS_URL="http://localhost:3001/ats"
 ```
 npm install
 ```
-5.  **Run the Application**:
+4.  **Run the Application**:
 *   Navigate to the root directory of the application:
 ```
 npm start
@@ -205,3 +215,47 @@ const getApplications = async (accountId: string, next: string) => {
     }
 }
 ```
+### Get All Job Postings
+Fetches all Jobs postings for the candidate view.
+```
+const getPostedJobs = async (accountId: string, next: string) => {
+    let url: string = `${config.STACKONE_ATS_URL}/job_postings?page_size=25`;
+
+    if (next) {
+        url += `&next=${encodeURIComponent(next)}`;
+    }
+
+    try {
+        const response = await axios.get(url, {
+            headers: {
+                'accept': 'application/json',
+                'x-account-id': accountId,
+                'authorization': `Basic ${config.STACKONE_API_KEY}`,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        //Handle error
+    }
+}
+```
+### Post Applications
+Create a new application for the candidates to apply.
+```
+const postApplication = async (accountId: string, applicationData: unknown) => {
+    const url: string = `${config.STACKONE_ATS_URL}/applications`;
+
+    try {
+        const response = await axios.post(url, applicationData, {
+            headers: {
+                'accept': 'application/json',
+                'x-account-id': accountId,
+                'authorization': `Basic ${config.STACKONE_API_KEY}`,
+                'content-type': 'application/json',
+            }
+        });
+        return response.data;
+    } catch (error) {
+         //Handle error
+    }
+}

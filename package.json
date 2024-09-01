@@ -4,6 +4,10 @@
     "build": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\""
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "globals": "^15.9.0"
+  },
+  "dependencies": {
+    "html-react-parser": "^5.1.12"
   }
 }

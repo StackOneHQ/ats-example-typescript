@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import CommonSidebar from "../components/CommonSidebar";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import ManageATSContent from "./ManageJobs";
+import CandidateView from "./CandidateView";
 
 const MainPage: React.FC = () => {
-  const [showManageATS, setShowManageATS] = useState(true);
-
   return (
     <div className="flex">
-      <CommonSidebar
-        showManageATS={showManageATS}
-        setShowManageATS={setShowManageATS}
-      />
-      <div className="flex-1 ml-1/7  bg-white">
-        {showManageATS ? (
-          <ManageATSContent />
-        ) : (
-          <div className="p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4">Apply for Jobs</h2>
-          </div>
-        )}
+      <div className="w-1/7"></div>
+      <div className="flex-1 ml-1/7 bg-white">
+        <Routes>
+          <Route path="/" element={<ManageATSContent />} />
+          <Route
+            path="apply-jobs"
+            element={
+              <div
+                className="p-6 rounded-lg shadow-md"
+              >
+                <CandidateView />
+              </div>
+            }
+          />
+        </Routes>
       </div>
     </div>
   );
